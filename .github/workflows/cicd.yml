@@ -158,8 +158,16 @@ jobs:
             # Log out from Docker Hub
             docker logout
  
-            # Launch stack
-            docker compose -f docker-compose.production.yml up -d --remove-orphans
+            # Create containers and volumes without starting them
+            docker compose -f docker-compose.production.yml create
+
+            # Fix SQLite volume permissions for nodejs user (UID 1001:GID 65533)
+            echo "Fixing SQLite volume permissions..."
+            chown -R 1001:65533 /var/lib/docker/volumes/uccis_uccis_sqlite_data/_data
+            chmod -R u+rwX /var/lib/docker/volumes/uccis_uccis_sqlite_data/_data
+
+            # Start the stack
+            docker compose -f docker-compose.production.yml start
             
             # Verify deployment status
             docker compose -f docker-compose.production.yml ps
