@@ -166,8 +166,8 @@ jobs:
             chown -R 1001:65533 /var/lib/docker/volumes/uccis_uccis_sqlite_data/_data
             chmod -R u+rwX /var/lib/docker/volumes/uccis_uccis_sqlite_data/_data
 
-            # Start the stack
-            docker compose -f docker-compose.production.yml start
+            # Launch stack
+            docker compose -f docker-compose.production.yml up -d --remove-orphans
             
             # Verify deployment status
             docker compose -f docker-compose.production.yml ps
