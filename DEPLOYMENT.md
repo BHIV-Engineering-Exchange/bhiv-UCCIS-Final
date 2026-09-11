@@ -7,7 +7,7 @@
   - Container Port: `5000`
   - Production VM Mapped Port: `5005` (`http://<VM_IP>:5005`)
   - Health Endpoint: `http://localhost:5005/api/health`
-- **Frontend Service (`uccis-frontend`)**: React.js production build served using `serve`.
+- **Frontend Service (`uccis-frontend`)**: React.js production build served using `serve`
   - Container Port: `3000`
   - Production VM Mapped Port: `3010` (`http://<VM_IP>:3010`)
   - Health Endpoint: `http://localhost:3010/`
