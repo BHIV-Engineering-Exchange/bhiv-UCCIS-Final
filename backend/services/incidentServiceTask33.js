@@ -12,7 +12,7 @@ exports.createIncident = async (
     status: "OPEN"
   };
 
-  const [result] = await task33DB.promise().query(
+  const [result] = await task33DB.query(
     `
     INSERT INTO incidents
     (
@@ -39,7 +39,7 @@ exports.createIncident = async (
 
 exports.getIncidents = async () => {
 
-  const [rows] = await task33DB.promise().query(`
+  const [rows] = await task33DB.query(`
     SELECT *
     FROM incidents
     ORDER BY created_at DESC
@@ -52,7 +52,7 @@ exports.resolveIncident = async (
   incidentId
 ) => {
 
-  await task33DB.promise().query(
+  await task33DB.query(
     `
     UPDATE incidents
     SET status='RESOLVED'
