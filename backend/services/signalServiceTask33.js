@@ -16,7 +16,7 @@ exports.createSignal = async (payload) => {
     description: payload.description || ""
   };
 
-  await task33DB.promise().query(
+  await task33DB.query(
     `
     INSERT INTO signals
     (
@@ -43,7 +43,7 @@ exports.createSignal = async (payload) => {
 };
 
 exports.getSignals = async () => {
-  const [rows] = await task33DB.promise().query(`
+  const [rows] = await task33DB.query(`
     SELECT *
     FROM signals
     ORDER BY created_at DESC
@@ -53,7 +53,7 @@ exports.getSignals = async () => {
 };
 
 exports.getSignalByTrace = async (traceId) => {
-  const [rows] = await task33DB.promise().query(
+  const [rows] = await task33DB.query(
     `
     SELECT *
     FROM signals
@@ -69,7 +69,7 @@ exports.updateSignalStatus = async (
   traceId,
   status
 ) => {
-  await task33DB.promise().query(
+  await task33DB.query(
     `
     UPDATE signals
     SET status=?
