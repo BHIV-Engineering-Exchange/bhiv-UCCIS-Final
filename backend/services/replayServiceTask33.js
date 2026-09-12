@@ -4,7 +4,7 @@ exports.createReplay = async (
   traceId
 ) => {
 
-  const [result] = await task33DB.promise().query(
+  const [result] = await task33DB.query(
     `
     INSERT INTO replay_events
     (
@@ -27,7 +27,7 @@ exports.createReplay = async (
 
 exports.getReplayEvents = async () => {
 
-  const [rows] = await task33DB.promise().query(`
+  const [rows] = await task33DB.query(`
     SELECT *
     FROM replay_events
     ORDER BY created_at DESC
@@ -40,7 +40,7 @@ exports.runReplay = async (
   traceId
 ) => {
 
-  await task33DB.promise().query(
+  await task33DB.query(
     `
     UPDATE replay_events
     SET replay_status='EXECUTED'
@@ -59,7 +59,7 @@ exports.getReplayByTrace = async (
   traceId
 ) => {
 
-  const [rows] = await task33DB.promise().query(
+  const [rows] = await task33DB.query(
     `
     SELECT *
     FROM replay_events
