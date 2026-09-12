@@ -6,7 +6,7 @@ exports.createEvidence = async (
   payload
 ) => {
 
-  const [result] = await task33DB.promise().query(
+  const [result] = await task33DB.query(
     `
     INSERT INTO runtime_evidence
     (
@@ -33,7 +33,7 @@ exports.createEvidence = async (
 
 exports.getEvidence = async () => {
 
-  const [rows] = await task33DB.promise().query(`
+  const [rows] = await task33DB.query(`
     SELECT *
     FROM runtime_evidence
     ORDER BY created_at DESC
@@ -46,7 +46,7 @@ exports.getEvidenceByTrace = async (
   traceId
 ) => {
 
-  const [rows] = await task33DB.promise().query(
+  const [rows] = await task33DB.query(
     `
     SELECT *
     FROM runtime_evidence
@@ -63,7 +63,7 @@ exports.archiveEvidence = async (
   evidenceId
 ) => {
 
-  await task33DB.promise().query(
+  await task33DB.query(
     `
     UPDATE runtime_evidence
     SET status='ARCHIVED'
