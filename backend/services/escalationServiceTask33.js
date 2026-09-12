@@ -12,7 +12,7 @@ exports.createEscalation = async (
       ? "LEVEL_2"
       : "LEVEL_1";
 
-  const [result] = await task33DB.promise().query(
+  const [result] = await task33DB.query(
     `
     INSERT INTO escalations
     (
@@ -38,7 +38,7 @@ exports.createEscalation = async (
 
 exports.getEscalations = async () => {
 
-  const [rows] = await task33DB.promise().query(`
+  const [rows] = await task33DB.query(`
     SELECT *
     FROM escalations
     ORDER BY created_at DESC
@@ -51,7 +51,7 @@ exports.closeEscalation = async (
   escalationId
 ) => {
 
-  await task33DB.promise().query(
+  await task33DB.query(
     `
     UPDATE escalations
     SET status='CLOSED'
